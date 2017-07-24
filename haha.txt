@@ -1,6 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 oh
 yes
+=======
+>>>>>>> parent of a136e3b... yes
 haha
 =======
 >>>>>>> parent of acfb4b4... haha

@@ -1,18 +1,1 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-oh
-=======
->>>>>>> parent of 0d3124b... oh
-yes
-=======
->>>>>>> parent of a136e3b... yes
-=======
->>>>>>> parent of a136e3b... yes
-haha
-=======
->>>>>>> parent of acfb4b4... haha
-we
-like
 hello

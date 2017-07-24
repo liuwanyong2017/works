@@ -1,6 +1,9 @@
+<<<<<<< HEAD
 oh
 yes
 haha
+=======
+>>>>>>> parent of acfb4b4... haha
 we
 like
 hello

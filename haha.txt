@@ -1,7 +1,10 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 oh
 yes
+=======
+>>>>>>> parent of a136e3b... yes
 =======
 >>>>>>> parent of a136e3b... yes
 haha

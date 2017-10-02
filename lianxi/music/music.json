@@ -3,63 +3,63 @@
     {
         "title": "黄昏",
         "auther": "周传雄",
-        "img": "/huanghun.jpg",
-        "src": "/huanghun.mp3"
+        "img": "/works/huanghun.jpg",
+        "src": "/works/huanghun.mp3"
     },
     {
         "title": "告白气球",
         "auther": "周杰伦",
-        "img": "/gaobaiqiqiu.jpg",
-        "src": "/gaobaiqiqiu.mp3"
+        "img": "/works/gaobaiqiqiu.jpg",
+        "src": "/works/gaobaiqiqiu.mp3"
     },
     {
         "title": "生活不止眼前的苟且",
         "auther": "许巍",
-        "img": "/shenghuo.jpg",
-        "src": "/shenghuo.mp3"
+        "img": "/works/shenghuo.jpg",
+        "src": "/works/shenghuo.mp3"
     },
     {
         "title": "邻家美眉",
         "auther": "王绎龙",
-        "img": "/linjia.jpg",
-        "src": "/linjia.mp3"
+        "img": "/works/linjia.jpg",
+        "src": "/works/linjia.mp3"
     },
     {
         "title": "六月的雨",
         "auther": "古月哥欠",
-        "img": "/liuyue.jpg",
-        "src": "/liuyue.mp3"
+        "img": "/works/liuyue.jpg",
+        "src": "/works/liuyue.mp3"
     },
 
     {
         "title": "刚好遇见你",
         "auther": "李玉刚",
-        "img": "/ganghao.jpg",
-        "src": "/ganghao.mp3"
+        "img": "/works/ganghao.jpg",
+        "src": "/works/ganghao.mp3"
     },
     {
         "title": "春天花会开",
         "auther": "任我行",
-        "img": "/chuntian.jpg",
-        "src": "/chuntian.mp3"
+        "img": "/works/chuntian.jpg",
+        "src": "/works/chuntian.mp3"
     },
     {
         "title": "迷宫",
         "auther": "王若琳",
-        "img": "/migong.jpg",
-        "src": "/migong.mp3"
+        "img": "/works/migong.jpg",
+        "src": "/works/migong.mp3"
     },
     {
         "title": "素颜",
         "auther": "松曼",
-        "img": "/suyan.jpg",
-        "src": "/suyan.mp3"
+        "img": "/works/suyan.jpg",
+        "src": "/works/suyan.mp3"
     },
     {
         "title": "凉凉",
         "auther": "养晨",
-        "img": "/liangliang.jpg",
-        "src": "/liangliang.mp3"
+        "img": "/works/liangliang.jpg",
+        "src": "/works/liangliang.mp3"
     }
 
 

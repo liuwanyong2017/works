@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>音乐盒</title>
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            line-height: 1.5;
+            box-sizing: border-box;
+        }
+        
+        html,
+        body {
+            height: 100%;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        .box {
+            height: 100%;
+            position: relative;
+        }
+        
+        .bg {
+            height: 100%;
+            background: linear-gradient(to right top, rgba(38, 50, 105, 0.78), rgba(255, 152, 0, 0.45)), url(http://127.0.0.1:8080/huanghun.jpg) center center no-repeat;
+            background-size: cover;
+            filter: blur(2px);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+        
+        .panal-bg {
+            background: #333;
+            opacity: 0.3;
+            padding: 0;
+            border: 1px solid #fff;
+            width: 400px;
+            height: 370px;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px 30px 20px 15px;
+            box-shadow: 2px 3px 4px #fff;
+        }
+        
+        .effect {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .effect .fa {
+            font-size: 600px;
+            color: blue;
+            opacity: 0.3;
+        }
+        
+        .panal {
+            width: 350px;
+            height: 200px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            padding: 20px 30px 20px 15px;
+            color: cornflowerblue;
+        }
+        
+        .title {
+            font-size: 35px;
+            margin-top: 25px;
+            font-weight: bolder;
+            color: blue;
+        }
+        
+        .control {
+            float: left;
+            position: absolute;
+            color: aqua;
+            font-size: 25px;
+            opacity: 0.7;
+            margin-top: 6px;
+        }
+        
+        .control .fa {
+            margin-right: 10px;
+        }
+        
+        .auther {
+            font-size: 25px;
+            margin-top: 6px;
+        }
+        
+        .clearfix:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+        
+        .progress {
+            width: 100%;
+            height: 4px;
+            background: darkcyan;
+            margin-top: 20px;
+        }
+        
+        .current-pro {
+            width: 0px;
+            height: 4px;
+            background: aqua;
+        }
+        
+        .timer {
+            float: right;
+            margin-top: 10px;
+            font-size: 0;
+        }
+        
+        .timer span {
+            font-size: 25px;
+            color: cyan;
+        }
+        
+        .timer .fa-music {
+            float: left;
+            font-size: 0.3px;
+            color: cornflowerblue;
+        }
+        
+        .fa-futbol-o {
+            float: right;
+            font-size: 0.3px;
+            color: black;
+        }
+        
+        .list-bg {
+            float: left;
+            position: relative;
+            top: 10%;
+            left: 10%;
+        }
+        
+        .musicList {
+            position: absolute;
+            background: #000;
+            opacity: 0.4;
+        }
+        
+        .musicList li {
+            border-top: 1px solid #fff;
+            border-left: 1px solid #fff;
+            border-right: 1px solid #fff;
+            color: cornflowerblue;
+            width: 300px;
+            font-size: 23px;
+            padding-left: 20px;
+        }
+        
+        .musicList:last-child {
+            border-bottom: 1px solid #fff;
+        }
+        
+        .musicList li:hover {
+            background: #fff;
+            opacity: 0.6;
+            color: #000;
+        }
+        
+        li {
+            list-style: none;
+        }
+        
+        .fa-list {
+            font-size: 30px;
+            transition: All 1s ease-in-out;
+        }
+        
+        .active {
+            transform: rotate(360deg) scale(2, 2);
+            color: #264486;
+        }
+        
+        .hide {
+            display: none;
+        }
+    </style>
+    <style>
+        main {
+            height: 100%;
+            background: linear-gradient(to right top, rgba(38, 50, 105, 0.78), rgba(255, 152, 0, 0.45)), url(http://127.0.0.1:8080/beijing.jpg) center center no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+        
+        .fa-user {
+            color: #264486;
+            font-size: 40px;
+            position: absolute;
+            top: 10%;
+            right: 20%;
+            opacity: 0.7;
+        }
+        
+        .flip-modal {
+            display: none;
+        }
+        
+        .modal {
+            position: absolute;
+            width: 350px;
+            background: #fff;
+            box-shadow: 1px 2px 3px 4px rgba(0, 0, 0, 0.2);
+            top: 80%;
+            left: 50%;
+            padding: 20px;
+            transform: translate(-50%, -50%);
+            position: relative;
+        }
+        
+        .modal .fa-times {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+        }
+        
+        .modal .fa-times:hover {
+            background: red;
+        }
+        
+        .tab {
+            text-align: center;
+        }
+        
+        .tab span {
+            font-size: 20px;
+            margin: 0 10px;
+            color: #767576;
+        }
+        
+        .tab span.act {
+            border-bottom: 2px solid #444;
+            color: #444;
+        }
+        
+        .modal .content {
+            padding: 20px 40px;
+        }
+        
+        .modal .error {
+            color: crimson;
+            font-size: 15px;
+        }
+        
+        .modal .content .input-field {
+            position: relative;
+            margin-top: 10px;
+        }
+        
+        .modal .content .input-field .fa {
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            transform: translate(-50%, -50%);
+        }
+        
+        .modal .content input[type=text],
+        .modal .content input[type=password] {
+            width: 100%;
+            padding: 10px 10px 10px 30px;
+            outline: none;
+        }
+        
+        .modal .content input[type=submit] {
+            padding: 8px;
+            border: none;
+            background: #ddd;
+            box-shadow: 1px 3px 2px rgba(0, 0, 0, 0.3);
+            outline: none;
+        }
+        
+        .flip-modal.log login,
+        .flip-modal.reg register {
+            transform: translate(-50%, -50%) rotateY(0deg);
+            backface-visibility: hidden;
+            transition: all 1s;
+        }
+        
+        .flip-modal.log register,
+        .flip-modal.reg login {
+            transform: translate(-50%, -50%) rotateY(180deg);
+            backface-visibility: hidden;
+            transition: all 1s;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="box">
+        <div class="bg"></div>
+        <div class="panal-bg"></div>
+        <div class="effect">
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+        </div>
+        <div class="panal clearfix">
+            <p class="title">My song</p>
+
+            <div class="control">
+                <span class="fa fa-backward"></span>
+                <span class="fa fa-pause"></span>
+                <span class="fa fa-forward"></span>
+            </div>
+            <p class="auther">auther</p>
+            <div class="progress">
+                <div class="current-pro">
+                    <span class="fa-futbol-o fa fa-pulse fa-3x fa-fw"></span>
+                </div>
+            </div>
+
+            <div class="timer clearfix">
+                <span class="fa fa-music fa-pulse fa-3x fa-fw"></span>
+                <span class="minute">0</span>
+                <span>:</span>
+                <span class="second">00</span>
+            </div>
+        </div>
+
+
+        <div class="list-bg">
+            <span class="fa fa-list ">Music List</span>
+            <lu class="musicList hide">
+
+            </lu>
+        </div>
+        <span class="fa-user fa"></span>
+    </div>
+    <main>
+        <div class="flip-modal  log">
+            <div class="modal login">
+                <span class="fa-times fa"></span>
+                <div class="tab">
+                    <span class="log-in act">登录</span>
+                    <span class="regist">注册</span>
+                </div>
+                <div class="content">
+                    <div class="error"></div>
+                    <form action="" method="post">
+                        <div class="input-field">
+                            <input type="text" name="username" placeholder="用户名">
+                            <span class="fa fa-user-o"></span>
+                        </div>
+                        <div class="input-field">
+                            <input type="password" name="password" placeholder="密码">
+                            <span class="fa fa-lock"></span>
+                        </div>
+                        <div class="input-field">
+                            <input type="submit" value="登录">
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            <div class="modal register">
+                <span class="fa-times fa"></span>
+                <div class="tab">
+                    <span class="log-in ">登录</span>
+                    <span class="regist">注册</span>
+                </div>
+                <div class="content">
+                    <div class="error"></div>
+                    <form action="" method="post">
+                        <div class="input-field">
+                            <input type="text" name="username" placeholder="用户名">
+                            <span class="fa fa-user-o"></span>
+                        </div>
+                        <div class="input-field">
+                            <input type="password" name="password" placeholder="密码">
+                            <span class="fa fa-lock"></span>
+                        </div>
+                        <div class="input-field">
+                            <input type="password" name="password" placeholder="再次输入密码">
+                            <span class="fa fa-lock"></span>
+                        </div>
+                        <div class="input-field">
+                            <input type="submit" value="注册">
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+
+
+    <script>
+        function $(selection) {
+            return document.querySelector(selection)
+        }
+        $('.fa-user').onclick = function(e) {
+            e.stopPropagation()
+            $('.flip-modal').style.display = 'block'
+        }
+        $('.flip-modal').onclick = function(e) {
+            e.stopPropagation()
+            if (e.target.classList.contains('log-in')) {
+                $('.flip-modal').classList.remove('reg')
+                $('.flip-modal').classList.add('log')
+            }
+            if (e.target.classList.contains('regist')) {
+                $('.flip-modal').classList.add('reg')
+                $('.flip-modal').classList.remove('log')
+            }
+            if (e.target.classList.contains('fa-times')) {
+                $('.flip-modal').style.display = 'none'
+            }
+        }
+        window.onclick = function() {
+            $('.flip-modal').style.display = 'none'
+        }
+
+
+        $('.login form').addEventListener('submit', function(e) {
+            e.preventDefault()
+            if (!/^\w{3,8}$/.test($('.login input[name=username]').value)) {
+                $('.login .error').innerText = '用户名需输入3-8个字符，包括字母数字下划线'
+                return false
+            }
+            if (!/^\w{6,10}$/.test($('.login input[name=password]').value)) {
+                $('.modal-login .error').innerText = '密码需输入6-10个字符，包括字母数字下划线'
+                return false
+            }
+            this.submit()
+        })
+
+        $('.register form').addEventListener('submit', function(e) {
+            e.preventDefault()
+            if (!/^\w{3,8}$/.test($('.register input[name=username]').value)) {
+                $('.register .error').innerText = '用户名需输入3-8个字符，包括字母数字下划线'
+                return false
+            }
+            if (/^hunger$|^ruoyu$/.test($('.register input[name=username]').value)) {
+                $('.register .error').innerText = '用户名已存在'
+                return false
+            }
+            if (!/^\w{6,10}$/.test($('.register input[name=password]').value)) {
+                $('.register .error').innerText = '密码需输入6-10个字符，包括字母数字下划线'
+                return false
+            }
+            if ($('.register input[name=password]').value !== $('.register input[name=password2]').value) {
+                $('.register .error').innerText = '两次输入的密码不一致'
+                return false
+            }
+            this.submit()
+        })
+    </script>
+
+
+    <script>
+        function getMusicList(callback) {
+            var xhr = new XMLHttpRequest()
+            xhr.open('GET', 'http://127.0.0.1:8080/music.json', true)
+            xhr.onload = function() {
+                if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
+                    console.log(this.responseText)
+                    var res = JSON.parse(this.responseText)
+                    callback(res)
+                } else {
+                    console.log("404false ")
+                }
+                xhr.onerror = function() {
+                    console.log('网络异常')
+                }
+            }
+            xhr.send()
+        }
+        var currentIndex = 0
+
+        getMusicList(function(list) {
+            console.log(list)
+            musicList = list
+            loadMusic(list[currentIndex])
+            generateList(list)
+        })
+        var audio = new Audio()
+        audio.autoplay = true
+
+        function $(selection) {
+            return document.querySelector(selection)
+        }
+
+
+        function loadMusic(musicObject) {
+            console.log('begin play', musicObject)
+            audio.src = musicObject.src
+            $('.title').innerText = musicObject.title
+            $('.auther').innerText = musicObject.auther
+            $('.bg').style.backgroundImage = "url( " + musicObject.img + ") "
+                //for (var i = 0; i < $('.musicList').children.length; i++) {
+                //     $('.musicList').children[i].classList.remove('playing')
+                // }
+                //$('.musicList').children[currentIndex].classList.add('playing')
+
+        }
+
+
+        audio.ontimeupdate = function() {
+
+            $('.current-pro').style.width = (this.currentTime / audio.duration) * 100 + '%'
+        }
+        audio.onplay = function() {
+            clock = setInterval(function() {
+                $('.minute').innerText = Math.floor(audio.currentTime / 60)
+                var time = '' + Math.floor(audio.currentTime % 60)
+                if (time.length == 2) {
+                    $('.second').innerText = time
+                } else {
+                    $('.second').innerText = '0' + time
+                }
+            }, 1000)
+        }
+        audio.onpause = function() {
+            clearInterval(clock)
+        }
+        $('.fa-pause').onclick = function() {
+            if (audio.paused) {
+                audio.play()
+                console.log(this.classList)
+                this.classList.remove('fa-play')
+                this.classList.add('fa-pause')
+                $('.fa-music ').classList.add('fa-pulse')
+                $('.fa-futbol-o ').classList.add('fa-pulse')
+                $('.fa-spinner ').classList.add('fa-pulse')
+            } else {
+                audio.pause()
+                console.log(this.classList)
+                this.classList.remove('fa-pause')
+                this.classList.add('fa-play')
+                $('.fa-music ').classList.remove('fa-pulse')
+                $('.fa-futbol-o ').classList.remove('fa-pulse')
+                $('.fa-spinner ').classList.remove('fa-pulse')
+            }
+
+        }
+
+        $('.fa-forward').onclick = function() {
+            currentIndex = (++currentIndex) % musicList.length
+            loadMusic(musicList[currentIndex])
+        }
+        $('.fa-backward').onclick = function() {
+            currentIndex = (musicList.length + (--currentIndex)) % musicList.length
+            loadMusic(musicList[currentIndex])
+        }
+        var musicList = []
+
+        $('.progress').onclick = function(e) {
+            console.log(e)
+            audio.currentTime = (e.offsetX / parseInt(getComputedStyle(this).width)) * audio.duration
+        }
+        audio.onended = function() {
+            currentIndex = (++currentIndex) % musicList.length
+            loadMusic(musicList[currentIndex])
+        }
+
+        function generateList(musicList) {
+            var container = document.createDocumentFragment()
+            for (i = 0; i < musicList.length; i++) {
+                var li = document.createElement('li')
+                li.innerText = musicList[i].title + '   -    ' + musicList[i].auther
+                container.appendChild(li)
+            }
+            $('.musicList').appendChild(container)
+        }
+        $('.musicList').onclick = function(e) {
+            if (e.target.tagName.toLowerCase() === 'li') {
+                for (i = 0; i < this.children.length; i++) {
+                    if (this.children[i] === e.target) {
+                        currentIndex = i
+                    }
+                }
+            }
+            loadMusic(musicList[currentIndex])
+        }
+        $('.fa-list').onclick = function() {
+            this.classList.add('active')
+
+            $('.musicList').classList.remove('hide')
+            setTimeout(function() {
+                $('.musicList').classList.add('hide')
+                $('.fa-list').classList.remove('active')
+            }, 20000)
+        }
+    </script>
+
+</body>
+
+</html>
